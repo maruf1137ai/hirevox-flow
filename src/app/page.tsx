@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   CheckCircle2,
@@ -11,7 +12,7 @@ import {
   ShieldCheck,
   Search,
   MessageSquare,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 
 export default function Home() {
@@ -19,65 +20,99 @@ export default function Home() {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
   return (
-    <main style={{ minHeight: '100vh', background: 'var(--background)' }}>
+    <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
 
       {/* Logos Section */}
-      {/* <section style={{ padding: '6rem 0', background: 'color-mix(in srgb, var(--foreground), transparent 98%)' }}>
+      <section className="py-24" style={{ background: 'color-mix(in srgb, var(--foreground), transparent 98%)' }}>
         <div className="container">
-          <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '3rem' }}>
+          <p className="text-center text-[var(--muted)] text-sm font-semibold uppercase tracking-widest mb-12">
             Trusted by modern hiring teams
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '5rem', opacity: 0.5 }}>
-            {["STRIPE", "VERCEL", "NEXTJS", "OPENAI", "FIGMA", "RAILWAY"].map(logo => (
-              <span key={logo} style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '-0.05em', color: 'var(--foreground)' }}>{logo}</span>
+          <div className="flex flex-wrap justify-center gap-20 opacity-50">
+            {["STRIPE", "VERCEL", "NEXTJS", "OPENAI", "FIGMA", "RAILWAY"].map((logo) => (
+              <span
+                key={logo}
+                className="font-black text-2xl text-foreground"
+                style={{ letterSpacing: '-0.05em' }}
+              >
+                {logo}
+              </span>
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* How It Works */}
       <section id="features" className="section-padding">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-            <span className="badge" style={{ background: 'color-mix(in srgb, var(--primary), transparent 90%)', color: 'var(--primary)', marginBottom: '1.5rem' }}>The Pipeline</span>
-            <h2 style={{ fontSize: '3rem', marginBottom: '1rem', lineHeight: 1.1 }}>A fully automated <span className="gradient-text">hiring OS</span></h2>
-            <p className="subtitle-text" style={{ maxWidth: '600px', margin: '0 auto' }}>
-              We've redesigned the hiring process from the ground up to be AI-first and candidate-centric.
+          <div className="text-center mb-24">
+            <span
+              className="badge mb-6"
+              style={{
+                background: 'color-mix(in srgb, var(--primary), transparent 90%)',
+                color: 'var(--primary)',
+              }}
+            >
+              The Pipeline
+            </span>
+            <h2 className="text-5xl mb-4" style={{ lineHeight: 1.1 }}>
+              A fully automated <span className="gradient-text">hiring OS</span>
+            </h2>
+            <p className="subtitle-text mx-auto" style={{ maxWidth: '600px' }}>
+              We&apos;ve redesigned the hiring process from the ground up to be AI-first and candidate-centric.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
+          <div className="grid gap-12" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
             <motion.div {...fadeIn} className="card">
-              <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'color-mix(in srgb, var(--primary), transparent 90%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', marginBottom: '2rem' }}>
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8"
+                style={{
+                  background: 'color-mix(in srgb, var(--primary), transparent 90%)',
+                  color: 'var(--primary)',
+                }}
+              >
                 <Search size={28} />
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>No Resume Sourcing</h3>
+              <h3 className="text-2xl mb-3">No Resume Sourcing</h3>
               <p className="subtitle-text">
                 Hirevox builds dynamic profiles from GitHub, Behance, and technical assessments to verify real talent.
               </p>
             </motion.div>
 
             <motion.div {...fadeIn} transition={{ delay: 0.1 }} className="card">
-              <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'color-mix(in srgb, var(--secondary), transparent 90%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', marginBottom: '2rem' }}>
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8"
+                style={{
+                  background: 'color-mix(in srgb, var(--secondary), transparent 90%)',
+                  color: 'var(--secondary)',
+                }}
+              >
                 <MessageSquare size={28} />
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>AI Interview Core</h3>
+              <h3 className="text-2xl mb-3">AI Interview Core</h3>
               <p className="subtitle-text">
                 Our AI conducts first-round voice and text interviews, evaluating communication and cultural nuance.
               </p>
             </motion.div>
 
             <motion.div {...fadeIn} transition={{ delay: 0.2 }} className="card">
-              <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'color-mix(in srgb, var(--accent), transparent 90%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', marginBottom: '2rem' }}>
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8"
+                style={{
+                  background: 'color-mix(in srgb, var(--accent), transparent 90%)',
+                  color: 'var(--accent)',
+                }}
+              >
                 <BarChart3 size={28} />
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>Explainable Scoring</h3>
+              <h3 className="text-2xl mb-3">Explainable Scoring</h3>
               <p className="subtitle-text">
                 Get a structured 0-100 score for every candidate with a detailed breakdown of why they matched.
               </p>
@@ -87,39 +122,173 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="blob" style={{ bottom: '-10%', left: '50%', transform: 'translateX(-50%)', width: '600px', height: '600px', background: 'var(--primary)', opacity: 0.05 }}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Simple, transparent <span className="gradient-text">pricing</span></h2>
+      <section id="pricing" className="section-padding relative overflow-hidden">
+        <div
+          className="blob"
+          style={{
+            bottom: '-10%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '600px',
+            height: '600px',
+            background: 'var(--primary)',
+            opacity: 0.05,
+          }}
+        />
+        <div className="container relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl mb-4">
+              Simple, transparent <span className="gradient-text">pricing</span>
+            </h2>
             <p className="subtitle-text">Choose the plan that matches your hiring volume.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-            <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Starter</h3>
-              <div style={{ fontSize: '2.5rem', fontWeight: 700, margin: '2rem 0' }}>$0 <span style={{ fontSize: '1rem', color: 'var(--muted)', fontWeight: 400 }}>/ month</span></div>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem', flex: 1 }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={16} color="var(--primary)" /> 1 Active Job</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={16} color="var(--primary)" /> AI Screening Q&A</li>
+          <div
+            className="grid gap-8 mx-auto"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', maxWidth: '1000px' }}
+          >
+            {/* Starter */}
+            <div className="card flex flex-col">
+              <h3 className="text-xl mb-2">Starter</h3>
+              <div className="text-4xl font-bold my-8">
+                $0{" "}
+                <span className="text-base text-[var(--muted)] font-normal">/ month</span>
+              </div>
+              <ul className="flex flex-col gap-4 mb-12 flex-1">
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 size={16} color="var(--primary)" /> 1 Active Job
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 size={16} color="var(--primary)" /> AI Screening Q&A
+                </li>
               </ul>
-              <button className="glass" style={{ padding: '14px', borderRadius: '12px', fontWeight: 700 }}>Get Started</button>
+              <Link href="/signup" className="glass w-full font-bold shadow-none text-center rounded-xl" style={{ padding: '16px 34px', fontSize: '14px' }}>
+                Get Started
+              </Link>
             </div>
 
-            <div className="card" style={{ border: '2px solid var(--primary)', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translate(-50%, -50%)', background: 'var(--primary)', color: 'white', padding: '4px 12px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 700 }}>MOST POPULAR</div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Pro</h3>
-              <div style={{ fontSize: '2.5rem', fontWeight: 700, margin: '2rem 0' }}>$49 <span style={{ fontSize: '1rem', color: 'var(--muted)', fontWeight: 400 }}>/ month</span></div>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={16} color="var(--primary)" /> Unlimited Jobs</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={16} color="var(--primary)" /> Voice AI Interviews</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={16} color="var(--primary)" /> Custom Culture RAG</li>
+            {/* Pro */}
+            <div className="card relative" style={{ border: '2px solid var(--primary)' }}>
+              <div
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold px-3 py-1 rounded-full"
+                style={{ background: 'var(--primary)' }}
+              >
+                MOST POPULAR
+              </div>
+              <h3 className="text-xl mb-2">Pro</h3>
+              <div className="text-4xl font-bold my-8">
+                $49{" "}
+                <span className="text-base text-[var(--muted)] font-normal">/ month</span>
+              </div>
+              <ul className="flex flex-col gap-4 mb-12">
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 size={16} color="var(--primary)" /> Unlimited Jobs
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 size={16} color="var(--primary)" /> Voice AI Interviews
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 size={16} color="var(--primary)" /> Custom Culture RAG
+                </li>
               </ul>
-              <button className="gradient-bg" style={{ width: '100%', padding: '14px', borderRadius: '12px', fontWeight: 700 }}>Try Pro Free</button>
+              <Link href="/signup" className="gradient-bg w-full font-bold text-center rounded-xl" style={{ padding: '16px 34px', fontSize: '14px', boxShadow: '0 15px 30px -10px color-mix(in srgb, var(--primary), transparent 70%)' }}>
+                Try Pro Free
+              </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* AI Intelligence Section */}
+      <section className="section-padding bg-[var(--surface)]/10">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <span className="badge mb-6" style={{ background: 'color-mix(in srgb, var(--primary), transparent 90%)', color: 'var(--primary)' }}>
+                System Core
+              </span>
+              <h2 className="text-5xl mb-6 leading-tight">
+                AI that understands <br />
+                <span className="gradient-text italic">Contextual Talent</span>
+              </h2>
+              <p className="subtitle-text mb-8">
+                Unlike simple keyword filters, Hirevox Flow uses deep-reasoning LLMs to understand the nuance behind a project, the complexity of a codebase, and the cultural alignment of a candidate&apos;s past experiences.
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  { title: "Semantic Matching", desc: "Matches intent, not just keywords." },
+                  { title: "Bias Neutralization", desc: "Anonymized screening for true meritocracy." },
+                  { title: "Voice & Text Synthesis", desc: "Natural conversational AI interviews." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="mt-1"><CheckCircle2 size={18} color="var(--primary)" /></div>
+                    <div>
+                      <h4 className="text-lg font-bold">{item.title}</h4>
+                      <p className="subtitle-text text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="glass p-8 rounded-[24px] border border-[var(--border)] shadow-2xl">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">JD</div>
+                  <div>
+                    <h4 className="font-bold">Senior Product Engineer</h4>
+                    <p className="text-xs subtitle-text">Analysis in progress...</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="h-2 w-full bg-primary/10 rounded-full overflow-hidden">
+                    <div className="h-full bg-primary animate-progress" style={{ width: '85%' }}></div>
+                  </div>
+                  <div className="flex justify-between text-xs font-medium">
+                    <span>Technical Depth</span>
+                    <span className="text-primary">85% Match</span>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-background/50 border border-[var(--border)] italic text-sm subtitle-text">
+                    &quot;Candidate shows strong ownership of the architectural shift from monolith to microservices at their previous role.&quot;
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Decorative Elements */}
+              <div className="absolute -top-10 -right-10 w-32 h-32 gradient-bg opacity-10 blur-3xl rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Banner */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="gradient-bg p-20 rounded-[40px] text-center relative overflow-hidden shadow-2xl">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+
+            <motion.div {...fadeIn} className="relative z-10">
+              <h2 className="text-5xl text-white mb-6">Ready to find your <br /> next 10x hire?</h2>
+              <p className="text-white/80 text-xl max-w-[600px] mx-auto mb-12">
+                Join 500+ teams scaling their engineering and product organizations with AI-augmented intelligence.
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                <Link href="/signup" className="bg-white text-primary rounded-xl font-bold transition-all text-center" style={{ padding: '16px 34px', fontSize: '14px', boxShadow: '0 15px 30px -10px rgba(0,0,0,0.1)' }}>
+                  Get Started Free
+                </Link>
+                <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-xl font-bold hover:bg-white/20 transition-all" style={{ padding: '16px 34px', fontSize: '14px' }}>
+                  Book a Demo
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </main>
+
   );
 }
